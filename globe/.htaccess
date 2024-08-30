@@ -1,0 +1,45 @@
+<IfModule mod_headers.c>
+    Header always unset X-Frame-Options
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.+?)/?$ index.php?furl=$1 [L,QSA]
+</IfModule>
+
+<IfModule mod_deflate.c>
+    <IfModule mod_filter.c>
+        AddOutputFilter DEFLATE js css
+        AddOutputFilterByType DEFLATE text/html text/plain text/xml application/xml
+        AddOutputFilterByType DEFLATE image/svg+xml
+        AddOutputFilterByType DEFLATE application/x-font-ttf
+        AddOutputFilterByType DEFLATE application/font-woff
+        AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+        AddOutputFilterByType DEFLATE application/x-font-otf
+        BrowserMatch ^Mozilla/4 gzip-only-text/html
+        BrowserMatch ^Mozilla/4.0[678] no-gzip
+        BrowserMatch bMSIE !no-gzip !gzip-only-text/html
+    </IfModule>
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive on
+    ExpiresDefault "access plus 1 days"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/webm "access plus 1 month"
+    ExpiresByType video/mp4 "access plus 1 month"
+    ExpiresByType video/mov "access plus 1 month"
+    ExpiresByType video/webm "access plus 1 month"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+    ExpiresByType application/x-font-ttf "access plus 1 month"
+    ExpiresByType application/x-font-opentype "access plus 1 month"
+    ExpiresByType application/x-font-woff "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>
